@@ -1,28 +1,15 @@
-cmake_minimum_required(VERSION 3.25)
-
+cmake_minimum_required(VERSION 3.21)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(OPFrameWindowCounter VERSION 1.0.0 LANGUAGES CXX)
+project(FrameWindowCounter VERSION 1.0.0)
 
-include(FetchContent)
+file(GLOB SOURCES src/*.cpp)
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
-# Automatically fetch Geode SDK CMake macros if not present
-if(NOT DEFINED GEODE_SDK_PATH)
-    if(DEFINED ENV{GEODE_SDK})
-        set(GEODE_SDK_PATH $ENV{GEODE_SDK})
-    else()
-        message(FATAL_ERROR "Geode SDK path not found. Build Geode Mod Action must run first.")
-    endif()
+if (NOT DEFINED ENV{GEODE_SDK})
+    message(FATAL_ERROR "GEODE_SDK is not set")
 endif()
 
-list(APPEND CMAKE_MODULE_PATH "${GEODE_SDK_PATH}/cmake")
-include(Geode)
-
-add_geode_mod(
-    fwc_nandl_fb
-    "1.0.0"
-    src/main.cpp
-)
-
-target_include_directories(fwc_nandl_fb PRIVATE src)
+add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
+setup_geode_mod(${PROJECT_NAME})
