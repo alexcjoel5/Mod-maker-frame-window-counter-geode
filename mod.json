@@ -8,7 +8,7 @@
     "name": "NaN GD Frame Counter (Android Only)",
     "developer": "NanGD",
     "description": "Android-exclusive 240Hz frame window timing HUD with dynamic internal audio shifts.",
-    "dependencies": [],
+    
     "resources": {
         "sfx": []
     }
