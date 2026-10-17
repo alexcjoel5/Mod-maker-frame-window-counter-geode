@@ -111,7 +111,7 @@ struct $modify(FBPlayLayer, PlayLayer) {
 
         std::ofstream outFile(fullPath);
         if (outFile.is_open()) {
-            outFile << root.dump(matjson::NO_INDENT);
+            outFile << root.dump();
             outFile.close();
         }
     }
