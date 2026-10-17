@@ -16,7 +16,8 @@ namespace NaNdL {
     };
 
     struct FrameAction {
-        int frame = 0;              // Absolute frame index
+        int frame = 0;
+double timestampSeconds = 0.0;// Absolute frame index
         int frameDelta = 1;         // Exact integer frame window gap
         double windowMs = 16.667;   // Millisecond representation for erfc
         float levelPercent = 0.0f;
